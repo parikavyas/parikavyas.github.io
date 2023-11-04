@@ -4,9 +4,9 @@ title: Movie Recommendation System using Graph Representation Learning
 subtitle: Building state of art Recommendation System using Graph Neural Networks
 cover-img: /assets/img/path.jpg
 thumbnail-img: /assets/img/thumb.png
-share-img: /assets/img/path.jpg
-tags: [books, test]
-author: Sharon Smith and Barry Simpson
+share-img: /assets/img/gnn.jpg
+tags: [recommendation_systems, graph_models, graph_neural_networks, data_science, machine_learning]
+author: Parika M B Vyas
 ---
 
 In the digital age, the sheer volume of information and choices at our fingertips can be overwhelming. From online shopping to content streaming, the need for personalized recommendations has never been more critical. Recommendation systems are the guiding hands that help users discover products, services, or content that align with their preferences, thereby enhancing their user experience.
