@@ -20,11 +20,19 @@ author: Parika
 ###############################################
 
 navbar-links:
-  About Me: "aboutme"
-  Resources:
-    - Beautiful Jekyll: "https://beautifuljekyll.com"
-    - Learn markdown: "https://www.markdowntutorial.com/"
-  Author's home: "https://parikavyas.github.io"
+  Home Page: "https://parikavyas.github.io"
+  Author's Home: 
+    - About: "aboutme"
+    - Achievements: "awards"
+  Data Science:
+    - Blog Posts: "https://beautifuljekyll.com"
+    - Competitions: "https://www.markdowntutorial.com/"
+    - Awards & Achievements: "dsawards"
+Extra Curricular Activities:
+    - Social Service: "socialservice"
+    - Dance: "dance"
+    - Cooking: "cooking"
+  
 
 ################
 # --- Logo --- #
