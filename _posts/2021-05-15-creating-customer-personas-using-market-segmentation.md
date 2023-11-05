@@ -3,8 +3,8 @@ layout: post
 title: Customer Persona Creation using Market Segmentation
 subtitle: Leveraging AI to perform market segmentation on customer data to create customer personas
 cover-img: /assets/img/path.jpg
-thumbnail-img: /assets/img/thumb.png
-share-img: /assets/img/gnn.jpg
+thumbnail-img: /assets/img/clustering.png
+share-img: /assets/img/clustering.jpg
 tags: [segmentation, clustering, customer personas, data science, machine_learning]
 author: Parika M B Vyas
 ---
