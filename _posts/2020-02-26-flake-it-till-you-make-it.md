@@ -3,7 +3,7 @@ layout: post
 title: Movie Recommendation System using Graph Representation Learning
 subtitle: Building state of art Recommendation System using Graph Neural Networks
 cover-img: /assets/img/path.jpg
-thumbnail-img: /assets/img/thumb.png
+thumbnail-img: /assets/img/gnn.png
 share-img: /assets/img/gnn.jpg
 tags: [recommendation_systems, graph_models, graph_neural_networks, data_science, machine_learning]
 author: Parika M B Vyas
