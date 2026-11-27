@@ -1,0 +1,283 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens. Every colour in the UI comes from these variables.
+ * See docs/DESIGN_SYSTEM.md before changing them.
+ */
+:root {
+  --bg: #080f20;
+  --bg-secondary: #001c40;
+  --surface: #111e33;
+  --surface-elevated: #192c48;
+  --accent: #e8ff47;
+  --accent-blue: #4169e1;
+  --accent-blue-soft: #7b9cf5;
+  --text: #f5f5f0;
+  --text-muted: #a5b2c8;
+  --border: #263650;
+  --warm: #f2b880;
+  --header-height: 4rem;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-secondary: var(--bg-secondary);
+  --color-surface: var(--surface);
+  --color-surface-elevated: var(--surface-elevated);
+  --color-accent: var(--accent);
+  --color-blue: var(--accent-blue);
+  --color-blue-soft: var(--accent-blue-soft);
+  --color-text: var(--text);
+  --color-muted: var(--text-muted);
+  --color-border: var(--border);
+  --color-warm: var(--warm);
+
+  --font-display: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
+
+  --radius-card: 14px;
+}
+
+html {
+  scroll-padding-top: calc(var(--header-height) + 1.5rem);
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  line-height: 1.65;
+  overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Subtle geometric grid used behind documentation-style pages */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, color-mix(in srgb, var(--border) 45%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in srgb, var(--border) 45%, transparent) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+.mask-fade-b {
+  mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+}
+
+/* ---------- Flip cards ---------- */
+.flip-scene {
+  perspective: 1600px;
+}
+.flip-inner {
+  display: grid;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.3, 0.7, 0.2, 1);
+}
+.flip-inner > .flip-face {
+  grid-area: 1 / 1;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.flip-inner > .flip-back {
+  transform: rotateY(180deg);
+}
+.flip-inner[data-flipped="true"] {
+  transform: rotateY(180deg);
+}
+@media (prefers-reduced-motion: reduce) {
+  .flip-inner,
+  .flip-inner[data-flipped="true"] {
+    transform: none;
+    transition: none;
+  }
+  .flip-inner > .flip-back {
+    transform: none;
+  }
+  .flip-inner > .flip-face {
+    transition: opacity 0.2s ease;
+  }
+  .flip-inner[data-flipped="true"] > .flip-front,
+  .flip-inner[data-flipped="false"] > .flip-back {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+/* ---------- Illustration motion (only when the visitor allows it) ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  .anim-twinkle {
+    animation: twinkle 4.5s ease-in-out infinite;
+  }
+  .anim-spin-slow {
+    animation: spin 120s linear infinite;
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+  .anim-spin-slower {
+    animation: spin 200s linear infinite reverse;
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+  .anim-drift {
+    animation: drift 14s ease-in-out infinite;
+  }
+}
+@keyframes twinkle {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 1; }
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes drift {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* ---------- Long-form prose (Markdown, MDX, GitHub READMEs) ---------- */
+.prose {
+  color: var(--text);
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  max-width: 72ch;
+  overflow-wrap: break-word;
+}
+.prose > * + * {
+  margin-top: 1.15em;
+}
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4 {
+  font-family: var(--font-display);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+.prose h1 { font-size: 2rem; margin-top: 2em; }
+.prose h2 {
+  font-size: 1.6rem;
+  margin-top: 2.4em;
+  padding-top: 0.6em;
+  border-top: 1px solid var(--border);
+}
+.prose h3 { font-size: 1.25rem; margin-top: 1.9em; }
+.prose h4 { font-size: 1.05rem; margin-top: 1.6em; color: var(--text-muted); }
+.prose > :first-child { margin-top: 0; border-top: 0; padding-top: 0; }
+.prose a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--accent) 40%, transparent);
+  text-underline-offset: 3px;
+}
+.prose a:hover { text-decoration-color: var(--accent); }
+.prose .heading-anchor {
+  color: inherit;
+  text-decoration: none;
+}
+.prose strong { color: #ffffff; font-weight: 650; }
+.prose ul, .prose ol { padding-left: 1.4em; }
+.prose ul { list-style: disc; }
+.prose ol { list-style: decimal; }
+.prose li + li { margin-top: 0.35em; }
+.prose li::marker { color: var(--accent-blue-soft); }
+.prose blockquote {
+  border-left: 3px solid var(--accent);
+  padding: 0.25em 0 0.25em 1.1em;
+  color: var(--text-muted);
+  font-style: italic;
+}
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 2.5em 0; }
+.prose img, .prose video {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+.prose :not(pre) > code {
+  font-family: var(--font-mono);
+  font-size: 0.86em;
+  background: var(--surface-elevated);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.1em 0.4em;
+}
+.prose pre {
+  position: relative;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  line-height: 1.65;
+  background: #0b1528 !important;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.1rem 1.2rem;
+  overflow-x: auto;
+}
+.prose pre code { background: none; border: 0; padding: 0; }
+.prose .table-wrap,
+.prose table {
+  display: block;
+  overflow-x: auto;
+  max-width: 100%;
+}
+.prose table {
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+.prose th, .prose td {
+  border: 1px solid var(--border);
+  padding: 0.5em 0.8em;
+  text-align: left;
+}
+.prose th { background: var(--surface); font-family: var(--font-display); }
+.prose .katex-display { overflow-x: auto; overflow-y: hidden; padding: 0.4em 0; }
+.prose .mermaid-diagram {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem;
+  overflow-x: auto;
+}
+.prose .mermaid-diagram svg { margin: 0 auto; max-width: 100%; height: auto; }
+
+.copy-code-button {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  background: var(--surface-elevated);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.2rem 0.55rem;
+  opacity: 0.85;
+}
+.copy-code-button:hover,
+.copy-code-button:focus-visible { color: var(--accent); opacity: 1; }
+
+/* Typography-first reading for creative writing */
+.prose-writing {
+  font-size: 1.15rem;
+  line-height: 1.95;
+  max-width: 62ch;
+}
+.prose-writing p { white-space: pre-line; }
