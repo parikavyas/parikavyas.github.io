@@ -1,0 +1,28 @@
+---
+title: "Sample article (template)"
+description: "A draft template showing an MDX article with components. It is never published."
+date: 2026-11-27
+kind: Perspective
+draft: true
+tags: [template]
+---
+
+## Why this file exists
+
+This is a **template**, not a real article. MDX lets you mix Markdown with a few ready-made components.
+
+<Callout title="A callout">
+  Use callouts for asides, caveats and definitions.
+</Callout>
+
+## Embedding a demo
+
+Any registered visualization can be embedded by id:
+
+<Visualization id="k-means" />
+
+## Documents and video
+
+Put a PDF in `public/documents/` and preview it with
+`<Document href="/documents/file.pdf" title="My paper" />`.
+Embed a YouTube video with `<Video provider="youtube" id="VIDEO_ID" title="Talk" />`.
